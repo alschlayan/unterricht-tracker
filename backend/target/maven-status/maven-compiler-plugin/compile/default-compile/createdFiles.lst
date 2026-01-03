@@ -1,0 +1,7 @@
+com/example/unterrichttracker/repository/StudentRepository.class
+com/example/unterrichttracker/model/Lesson.class
+com/example/unterrichttracker/UnterrichtTrackerApplication.class
+com/example/unterrichttracker/controller/StudentController.class
+com/example/unterrichttracker/model/Student.class
+com/example/unterrichttracker/repository/LessonRepository.class
+com/example/unterrichttracker/controller/LessonController.class

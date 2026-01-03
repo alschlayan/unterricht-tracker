@@ -1,0 +1,157 @@
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --text: #1f2937;
+  --muted: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.card h2 {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+form {
+  margin-top: 24px;
+}
+
+.appShell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.appShell.collapsed {
+  grid-template-columns: 78px 1fr;
+}
+
+.sidebar {
+  background: #0b1220;
+  color: white;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iconBtn {
+  background: rgba(255,255,255,0.10);
+  border: 0;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.85);
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+
+.nav a.active {
+  background: rgba(255,255,255,0.12);
+  color: white;
+}
+
+.navIcon {
+  width: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.95;
+}
+
+.navLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.appShell.collapsed .navLabel {
+  display: none;
+}
+
+.appShell.collapsed .brand {
+  display: none;
+}
+
+.main {
+  padding: 0;
+}

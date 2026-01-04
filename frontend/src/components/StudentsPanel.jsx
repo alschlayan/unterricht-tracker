@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { createStudent, deleteStudent } from "../api";
+import { createStudent } from "../api";
 
-export default function StudentsPanel({ students, onChanged }) {
+export default function StudentsPanel({ onChanged, onCancel }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -10,17 +10,19 @@ export default function StudentsPanel({ students, onChanged }) {
     await createStudent({ name, email: email || null });
     setName("");
     setEmail("");
-    onChanged();
-  }
-
-  async function remove(id) {
-    await deleteStudent(id);
-    onChanged();
+    onChanged?.();
   }
 
   return (
-    <div className="card" style={{ marginTop: 32 }}>
-      <h2>Schüler</h2>
+    <div
+      style={{
+        border: "1px solid #e5e7eb",
+        borderRadius: 14,
+        padding: 14,
+        background: "#fbfbfc"
+      }}
+    >
+      <div style={{ fontWeight: 900, marginBottom: 10 }}>Neuen Schüler anlegen</div>
 
       <form onSubmit={addStudent}>
         <input
@@ -34,42 +36,13 @@ export default function StudentsPanel({ students, onChanged }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button>Schüler speichern</button>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <button type="submit">Speichern</button>
+          <button type="button" onClick={onCancel}>
+            Abbrechen
+          </button>
+        </div>
       </form>
-
-      <div style={{ marginTop: 16 }}>
-        {students.length === 0 ? (
-          <p style={{ color: "#6b7280" }}>Noch keine Schüler angelegt.</p>
-        ) : (
-          <div style={{ display: "grid", gap: 10 }}>
-            {students.map((s) => (
-              <div
-                key={s.id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: 12,
-                  borderRadius: 12,
-                  border: "1px solid #e5e7eb",
-                  background: "#fff"
-                }}
-              >
-                <div>
-                  <div style={{ fontWeight: 600 }}>{s.name}</div>
-                  {s.email ? (
-                    <div style={{ color: "#6b7280", fontSize: 14 }}>{s.email}</div>
-                  ) : null}
-                </div>
-                <button type="button" onClick={() => remove(s.id)}>
-                  Löschen
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
     </div>
   );
 }
-

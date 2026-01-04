@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { createLesson, deleteLesson, updateLesson } from "../api";
+import { createLesson, deleteLesson, updateLesson, deleteStudent } from "../api";
+import { minutesToUE } from "../utils/ue";
 
 export default function StudentDetails({ student, lessons, students, onChanged }) {
   const [newDate, setNewDate] = useState("");
@@ -36,10 +37,6 @@ export default function StudentDetails({ student, lessons, students, onChanged }
 
   function cancelEdit() {
     setEditingId(null);
-    setEditDate("");
-    setEditStartTime("");
-    setEditMinutes("");
-    setEditStudentId("");
   }
 
   async function saveEdit(id) {
@@ -76,6 +73,18 @@ export default function StudentDetails({ student, lessons, students, onChanged }
     await onChanged();
   }
 
+  async function removeStudent() {
+    if (!student) return;
+    const msg =
+      studentLessons.length > 0
+        ? "Dieser Schüler hat Unterrichtseinträge. Schüler trotzdem löschen? (Einträge bleiben ggf. bestehen)"
+        : "Schüler wirklich löschen?";
+    if (!confirm(msg)) return;
+
+    await deleteStudent(student.id);
+    await onChanged();
+  }
+
   if (!student) {
     return (
       <div className="card">
@@ -86,30 +95,62 @@ export default function StudentDetails({ student, lessons, students, onChanged }
   }
 
   return (
-    <div className="card">
-      <h2>Schülerdetails</h2>
-
-      <div style={{ marginTop: 8, fontSize: 18, fontWeight: 800 }}>{student.name}</div>
-      {student.email ? (
-        <div style={{ color: "#6b7280", marginTop: 4 }}>{student.email}</div>
-      ) : (
-        <div style={{ color: "#6b7280", marginTop: 4 }}>Keine E-Mail hinterlegt</div>
-      )}
-
-      <div className="grid" style={{ marginTop: 18 }}>
-        <div className="card" style={{ boxShadow: "none", border: "1px solid #e5e7eb" }}>
-          <h2>Einträge</h2>
-          <div className="value">{studentLessons.length}</div>
+    <div className="card" style={{ padding: 18 }}>
+      {/* Header + Delete Button */}
+      <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+        <div>
+          <div style={{ fontSize: 18, fontWeight: 900 }}>{student.name}</div>
+          <div style={{ color: "#6b7280", marginTop: 4 }}>
+            {student.email || "Keine E-Mail hinterlegt"}
+          </div>
         </div>
-        <div className="card" style={{ boxShadow: "none", border: "1px solid #e5e7eb" }}>
-          <h2>Stunden gesamt</h2>
-          <div className="value">{(totalMinutes / 60).toFixed(1)} h</div>
+
+        <button type="button" onClick={removeStudent} style={{ background: "#ef4444" }}>
+          Schüler löschen
+        </button>
+      </div>
+
+      {/* ✅ Kompakte Stats nebeneinander */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+          marginTop: 14
+        }}
+      >
+        <div
+          style={{
+            border: "1px solid #e5e7eb",
+            borderRadius: 14,
+            padding: 12,
+            background: "#fff"
+          }}
+        >
+          <div style={{ color: "#6b7280", fontWeight: 800, fontSize: 13 }}>Einträge</div>
+          <div style={{ fontSize: 22, fontWeight: 900, marginTop: 6 }}>
+            {studentLessons.length}
+          </div>
+        </div>
+
+        <div
+          style={{
+            border: "1px solid #e5e7eb",
+            borderRadius: 14,
+            padding: 12,
+            background: "#fff"
+          }}
+        >
+          <div style={{ color: "#6b7280", fontWeight: 800, fontSize: 13 }}>Stunden gesamt</div>
+          <div style={{ fontSize: 22, fontWeight: 900, marginTop: 6 }}>
+            {minutesToUE(totalMinutes)} UE
+          </div>
         </div>
       </div>
 
-      {/* ✅ Neuer Unterricht für diesen Schüler */}
-      <div style={{ marginTop: 18 }}>
-        <h2>Neuer Unterricht für {student.name}</h2>
+      {/* Neuer Unterricht */}
+      <div style={{ marginTop: 16 }}>
+        <h2>Neuer Unterricht</h2>
         <form onSubmit={addForStudent}>
           <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} required />
           <input type="time" value={newStartTime} onChange={(e) => setNewStartTime(e.target.value)} />
@@ -125,8 +166,8 @@ export default function StudentDetails({ student, lessons, students, onChanged }
         </form>
       </div>
 
-      {/* ✅ Einträge bearbeiten/löschen direkt in den Details */}
-      <div style={{ marginTop: 18 }}>
+      {/* Einträge bearbeitbar */}
+      <div style={{ marginTop: 16 }}>
         <h2>Einträge (bearbeitbar)</h2>
 
         {latest.length === 0 ? (
@@ -154,13 +195,11 @@ export default function StudentDetails({ student, lessons, students, onChanged }
                         onChange={(e) => setEditDate(e.target.value)}
                         required
                       />
-
                       <input
                         type="time"
                         value={editStartTime}
                         onChange={(e) => setEditStartTime(e.target.value)}
                       />
-
                       <input
                         type="number"
                         value={editMinutes}
@@ -170,7 +209,6 @@ export default function StudentDetails({ student, lessons, students, onChanged }
                         min={1}
                       />
 
-                      {/* Du kannst hier optional den Schüler wechseln */}
                       <select
                         value={editStudentId}
                         onChange={(e) => setEditStudentId(e.target.value)}
@@ -217,9 +255,9 @@ export default function StudentDetails({ student, lessons, students, onChanged }
                   }}
                 >
                   <div>
-                    <div style={{ fontWeight: 700 }}>
+                    <div style={{ fontWeight: 900 }}>
                       {l.date}
-                      {l.startTime ? ` ${l.startTime}` : ""} — {l.durationMinutes} min
+                      {l.startTime ? ` ${l.startTime}` : ""} — {minutesToUE(l.durationMinutes)} UE
                     </div>
                   </div>
 

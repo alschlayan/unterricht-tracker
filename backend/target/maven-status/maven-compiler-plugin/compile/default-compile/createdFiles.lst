@@ -1,7 +1,13 @@
 com/example/unterrichttracker/repository/StudentRepository.class
 com/example/unterrichttracker/model/Lesson.class
-com/example/unterrichttracker/UnterrichtTrackerApplication.class
 com/example/unterrichttracker/controller/StudentController.class
+com/example/unterrichttracker/model/AppSetting.class
 com/example/unterrichttracker/model/Student.class
+com/example/unterrichttracker/controller/AdkController.class
+com/example/unterrichttracker/controller/SettingsController.class
+com/example/unterrichttracker/model/AdkProgress.class
+com/example/unterrichttracker/repository/AdkProgressRepository.class
+com/example/unterrichttracker/UnterrichtTrackerApplication.class
 com/example/unterrichttracker/repository/LessonRepository.class
 com/example/unterrichttracker/controller/LessonController.class
+com/example/unterrichttracker/repository/AppSettingRepository.class

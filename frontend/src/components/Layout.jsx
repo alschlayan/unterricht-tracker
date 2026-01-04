@@ -24,7 +24,7 @@ function Icon({ name }) {
 }
 
 export default function Layout() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <div className={`appShell ${collapsed ? "collapsed" : ""}`}>

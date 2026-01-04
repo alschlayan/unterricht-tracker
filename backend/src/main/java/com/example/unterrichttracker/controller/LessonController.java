@@ -36,6 +36,12 @@ public class LessonController {
                     existing.setDate(incoming.getDate());
                     existing.setDurationMinutes(incoming.getDurationMinutes());
                     existing.setStudent(incoming.getStudent());
+                    
+                    existing.setAmount(incoming.getAmount());
+                    existing.setPaid(incoming.isPaid());
+                    existing.setTransferred(incoming.isTransferred());
+
+
                     return ResponseEntity.ok(repo.save(existing));
                 })
                 .orElse(ResponseEntity.notFound().build());

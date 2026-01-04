@@ -1,7 +1,13 @@
+/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/controller/SettingsController.java
+/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/model/AdkProgress.java
 /Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/controller/StudentController.java
-/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/UnterrichtTrackerApplication.java
+/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/controller/AdkController.java
 /Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/model/Student.java
 /Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/repository/LessonRepository.java
+/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/model/AppSetting.java
+/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/UnterrichtTrackerApplication.java
+/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/repository/AdkProgressRepository.java
+/Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/repository/AppSettingRepository.java
 /Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/controller/LessonController.java
 /Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/repository/StudentRepository.java
 /Users/alschlayan/Downloads/unterricht-tracker-full/backend/src/main/java/com/example/unterrichttracker/model/Lesson.java

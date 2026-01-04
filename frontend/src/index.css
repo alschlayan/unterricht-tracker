@@ -155,3 +155,290 @@ form {
 .main {
   padding: 0;
 }
+
+/* ===== Startseite: klare Struktur ===== */
+
+.heroCard {
+  text-align: center;
+  padding: 26px 22px;
+}
+
+.heroMain {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+}
+
+.heroLabel {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.heroUE {
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--text);
+}
+
+.heroUE span {
+  color: var(--primary);
+  font-size: 1.05rem;
+  font-weight: 900;
+  margin-left: 8px;
+}
+
+.heroControls {
+  margin: 18px auto 0;
+  width: min(720px, 100%);
+  text-align: left;
+}
+
+.heroRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.targetInline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.targetInline input {
+  width: 120px;
+  margin: 0;
+}
+
+.progressBarGray {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFillGreen {
+  height: 100%;
+  width: 0%;
+  background: #16a34a; /* ✅ grün */
+  border-radius: 999px;
+  transition: width 200ms ease;
+}
+
+.heroFooter {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .statsRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  padding: 18px;
+}
+
+.statTitle {
+  margin: 0 0 8px 0;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.statValue {
+  font-size: 2.0rem;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.1;
+}
+.heroCard button svg {
+  opacity: 0.9;
+}
+.heroCard button:hover svg {
+  opacity: 1;
+}
+.heroCard button {
+  background: #111827;
+}
+/* ===== Checkbox / Bezahlung sauber ausrichten ===== */
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;               /* 👈 kontrollierter Abstand */
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.checkboxRow input[type="checkbox"] {
+  margin: 0;              /* 👈 entfernt riesige Standard-Abstände */
+  width: 16px;
+  height: 16px;
+}
+/* ===== Select / Schülerauswahl ===== */
+
+select {
+  min-height: 44px;        /* 👈 angenehme Klickhöhe */
+  padding: 10px 12px;      /* 👈 innen Luft */
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+/* Optional: besseres Hover/Focus-Feedback */
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+/* ===== ADK (Ausbildungsdiagrammkarte) Tablet UI ===== */
+
+.adkCard {
+  padding: 20px;
+}
+
+.adkSection {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 16px;
+  background: #fff;
+}
+
+.adkSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.adkProgressBar {
+  height: 12px;                 /* größer für Tablet */
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 12px 0 14px;
+}
+
+.adkProgressFill {
+  height: 100%;
+  background: #16a34a;
+  border-radius: 999px;
+}
+
+.adkItemsGrid {
+  display: grid;
+  grid-template-columns: 1fr;    /* default 1 Spalte */
+  gap: 10px;
+}
+
+@media (min-width: 720px) {
+  .adkItemsGrid {
+    grid-template-columns: 1fr 1fr; /* ✅ Tablet: 2 Spalten */
+    gap: 10px 14px;
+  }
+}
+
+/* Touch-friendly checkbox row */
+.adkCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #eef0f2;
+  background: #fafafa;
+  cursor: pointer;
+  user-select: none;
+}
+
+.adkCheckbox:hover {
+  background: #f5f6f8;
+}
+
+.adkCheckbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;                    /* wichtig gegen "riesen Lücke" */
+  flex: 0 0 auto;
+}
+
+.adkCheckbox span {
+  font-size: 16px;              /* gut auf Tablet */
+  line-height: 1.25;
+}
+
+.adkTopMeta {
+  color: var(--muted);
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+/* ===== ADK Accordion ===== */
+
+.adkAccordionHeader {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.adkHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.adkChevron {
+  font-size: 18px;
+  line-height: 1;
+  color: #6b7280;
+  flex: 0 0 auto;
+}
+
+.adkSectionBody {
+  margin-top: 12px;
+}
+
+.adkSectionBodyHidden {
+  display: none;
+}
+.adkAccordionHeader {
+  width: 100%;
+  background: transparent !important;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+
+  /* ✅ wichtig: verhindert "unsichtbaren" Text durch Button-Globalstyles */
+  color: var(--text) !important;
+}
+.adkSectionTitle {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--text);
+}
